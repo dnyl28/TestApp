@@ -1,0 +1,17 @@
+<h1><%= @project.title %></h1>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @project.created_at %>
+</p>
+
+<p>
+  <%= link_to 'Edit Project', edit_project_path(@project) %> |
+  <%= link_to 'Back to Projects', projects_path %> |
+  <%= button_to 'Delete Project', project_path(@project), method: :delete, data: { confirm: "hello", turbo_confirm: "Are you sure?" } %>
+</p>
