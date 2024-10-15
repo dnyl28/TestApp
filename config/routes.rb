@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  #get "users/new"
+  #get "users/create"
+  #get "users/index"
   devise_for :users
+
+  resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
+
 
   resources :projects do
     resources :bugs  # Nesting bugs under projects for context

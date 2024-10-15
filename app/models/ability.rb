@@ -9,16 +9,16 @@ class Ability
     case user.user_type
     when 'manager'
       can :manage, Project
-      can :read, Project
-      can :read, Bug
+      can :manage, Bug
+      can :manage, User # Managers can manage users (create, read, update, destroy)
     when 'developer'
       can :read, Project
       can :read, Bug
-      can :update, Bug, developer_id: user.id
+      can :update, Bug, developer_id: user.id # Developer can update only the bugs assigned to them
     when 'qa'
       can :read, Project
-      can :create, Bug
-      can :update, Bug, creator_id: user.id
+      can :create, Bug # QA can create new bugs
+      can :update, Bug, creator_id: user.id # QA can update only the bugs they created
     end
     # Define abilities for the user here. For example:
     #

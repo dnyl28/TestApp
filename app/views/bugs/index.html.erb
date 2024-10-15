@@ -1,0 +1,29 @@
+<h1>Bugs for <%= @project.title %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Assigned Developer</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bugs.each do |bug| %>
+      <tr>
+        <td><%= link_to bug.title, project_bug_path(@project, bug) %></td>
+        <td><%= bug.bug_type %></td>
+        <td><%= bug.status %></td>
+        <td><%= bug.developer ? bug.developer.name : 'Not assigned yet' %></td>
+        <td>
+          <%= link_to 'Edit', edit_project_bug_path(@project, bug) %> |
+          <%= link_to 'Delete', project_bug_path(@project, bug), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Bug', new_project_bug_path(@project) %>

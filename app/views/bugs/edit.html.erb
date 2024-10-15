@@ -1,0 +1,39 @@
+<h1>Edit Bug</h1>
+
+<%= form_with(model: [@project, @bug], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_select :deadline %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select :type, Bug::BUG_TYPES %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Bug::BUG_STATUSES %>
+  </div>
+
+  <div class="field">
+    <%= form.label :developer_id, 'Assign Developer' %>
+    <%= form.collection_select :developer_id, User.developers, :id, :name, prompt: 'Select Developer' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Update Bug' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Bug List', project_bugs_path(@project) %>
