@@ -58,5 +58,5 @@ end
 
 
 gem 'devise'
-gem 'carrierwave'
+
 gem 'cancancan', '~> 3.0'
